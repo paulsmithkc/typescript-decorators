@@ -9,11 +9,11 @@
     "build:ES2021": "tsc --project tsconfig.ES2021.json",
     "build:ES2022": "tsc --project tsconfig.ES2022.json",
     "build:TC39": "tsc --project tsconfig.DecoratorTC39.json",
-    "start": "npx ts-node src/index.ts",
-		"start:ES2017": "npx ts-node src/index.ts --project tsconfig.ES2017.json",
-		"start:ES2021": "npx ts-node src/index.ts --project tsconfig.ES2021.json",
-		"start:ES2022": "npx ts-node src/index.ts --project tsconfig.ES2022.json",
-		"start:TC39": "npx ts-node src/index.ts --project tsconfig.DecoratorTC39.json"
+    "start": "npm run build && node dist/index.js",
+    "start:ES2017": "npm run build:ES2017 && node dist/index.js",
+    "start:ES2021": "npm run build:ES2021 && node dist/index.js",
+    "start:ES2022": "npm run build:ES2022 && node dist/index.js",
+    "start:TC39": "npm run build:TC39 && node dist/index.js"
   },
   "dependencies": {
     "@types/node": "^18.0.0",

@@ -1,22 +1,20 @@
 function setting(defaultValue: string): any {
-  function settingExperimental(target: unknown, property: string | symbol) {
+  function settingExperimental(target: unknown, property: string | symbol): void {
     console.log('settingExperimental', { defaultValue, target, property });
     target[property] = process.env[String(property)] || defaultValue;
+    return;
   }
-  function settingTC39(_target: unknown, context: ClassFieldDecoratorContext) {
-    return function () {
+  function settingTC39(_target: unknown, context: ClassFieldDecoratorContext): () => string {
+    return function (): string {
       console.log('settingTC39', { defaultValue, target: this, context });
       return process.env[String(context.name)] || defaultValue;
     };
   }
-  return function (
-    target: unknown,
-    context: string | symbol | ClassFieldDecoratorContext
-  ) {
+  return function (target: unknown, context: string | symbol | ClassFieldDecoratorContext) {
     if (typeof context !== 'object') {
-      settingExperimental(target, context);
+      return settingExperimental(target, context);
     } else {
-      settingTC39(target, context);
+      return settingTC39(target, context);
     }
   };
 }
@@ -37,5 +35,12 @@ console.log({
   SETTING_ONE: configInstance.SETTING_ONE,
   SETTING_TWO: configInstance.SETTING_TWO,
 });
+
+if (configInstance.SETTING_ONE !== 'default_1') {
+  throw new Error('SETTING_ONE NOT INITIALIZED');
+}
+if (configInstance.SETTING_TWO !== 'default_2') {
+  throw new Error('SETTING_TWO NOT INITIALIZED');
+}
 
 console.log('DONE.');
