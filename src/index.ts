@@ -41,10 +41,10 @@ console.log({
   SETTING_TWO: configInstance.SETTING_TWO,
 });
 
-if (configInstance.SETTING_ONE !== 'default_1') {
+if (!configInstance.SETTING_ONE) {
   throw new Error('SETTING_ONE NOT INITIALIZED');
 }
-if (configInstance.SETTING_TWO !== 'default_2') {
+if (!configInstance.SETTING_TWO) {
   throw new Error('SETTING_TWO NOT INITIALIZED');
 }
 

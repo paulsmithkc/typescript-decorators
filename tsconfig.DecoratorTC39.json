@@ -3,6 +3,6 @@
   "compilerOptions": {
     "target": "ES2021",
     "experimentalDecorators": false,
-    "emitDecoratorMetadata": false
+    "emitDecoratorMetadata": true
   }
 }
