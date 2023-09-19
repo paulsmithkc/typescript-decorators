@@ -4,14 +4,19 @@
   "author": "Paul Smith",
   "scripts": {
     "reinstall": "rm -rf node_modules package-lock.json && npm i",
-    "start": "npx ts-node src/index.ts",
     "build": "tsc --project tsconfig.json",
     "build:ES2017": "tsc --project tsconfig.ES2017.json",
     "build:ES2021": "tsc --project tsconfig.ES2021.json",
     "build:ES2022": "tsc --project tsconfig.ES2022.json",
-    "build:TC39": "tsc --project tsconfig.DecoratorTC39.json"
+    "build:TC39": "tsc --project tsconfig.DecoratorTC39.json",
+    "start": "npx ts-node src/index.ts",
+		"start:ES2017": "npx ts-node src/index.ts --project tsconfig.ES2017.json",
+		"start:ES2021": "npx ts-node src/index.ts --project tsconfig.ES2021.json",
+		"start:ES2022": "npx ts-node src/index.ts --project tsconfig.ES2022.json",
+		"start:TC39": "npx ts-node src/index.ts --project tsconfig.DecoratorTC39.json"
   },
   "dependencies": {
+    "@types/node": "^18.0.0",
     "typescript": "^5.2.0"
   }
 }
