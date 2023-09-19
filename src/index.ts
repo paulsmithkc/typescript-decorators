@@ -1,12 +1,17 @@
+import 'reflect-metadata';
+
 function setting(defaultValue: string): any {
+  function getType(target: unknown, property: string | symbol) {
+    return Reflect.getMetadata('design:type', target, property);
+  }
   function settingExperimental(target: unknown, property: string | symbol): void {
-    console.log('settingExperimental', { defaultValue, target, property });
+    console.log('settingExperimental', { defaultValue, target, property, type: getType(target, property) });
     target[property] = process.env[String(property)] || defaultValue;
     return;
   }
   function settingTC39(_target: unknown, context: ClassFieldDecoratorContext): () => string {
     return function (): string {
-      console.log('settingTC39', { defaultValue, target: this, context });
+      console.log('settingTC39', { defaultValue, target: this, context, type: getType(this, context.name) });
       return process.env[String(context.name)] || defaultValue;
     };
   }
