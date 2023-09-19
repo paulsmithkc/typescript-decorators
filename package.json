@@ -1,0 +1,17 @@
+{
+  "name": "typescript-decorators",
+  "version": "1.0.0",
+  "author": "Paul Smith",
+  "scripts": {
+    "reinstall": "rm -rf node_modules package-lock.json && npm i",
+    "start": "npx ts-node src/index.ts",
+    "build": "tsc --project tsconfig.json",
+    "build:ES2017": "tsc --project tsconfig.ES2017.json",
+    "build:ES2021": "tsc --project tsconfig.ES2021.json",
+    "build:ES2022": "tsc --project tsconfig.ES2022.json",
+    "build:TC39": "tsc --project tsconfig.DecoratorTC39.json"
+  },
+  "dependencies": {
+    "typescript": "^5.2.0"
+  }
+}
